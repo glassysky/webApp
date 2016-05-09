@@ -3,7 +3,7 @@ var path = require('path');
 
 module.exports = {
     entry: {
-        index: ['./entry/index.js']
+        index: ['./entry/font-end/index.js']
     },
     output: {
         path: path.join(__dirname, "./public/dist/font-end/"),

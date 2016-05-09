@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 // mongodb
 var mongodb = require('./model/index');
-var UserModel = require('./public/back-end/index.bundle');
+var UserModel = require('./public/dist/back-end/index.bundle');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
