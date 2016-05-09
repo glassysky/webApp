@@ -3,7 +3,9 @@ var path = require('path');
 
 module.exports = {
     entry: {
-        index: ['./entry/font-end/index.js']
+        index: ['./entry/font-end/index.js'],
+        signin: ['./entry/font-end/signin.js'],
+        signup: ['./entry/font-end/signup.js']
     },
     output: {
         path: path.join(__dirname, "./public/dist/font-end/"),
@@ -11,12 +13,12 @@ module.exports = {
         publicPath: '/dist/'
     },
     resolve: {
-        extensions: ['', '.js']
+        extensions: ['', '.js', '.jsx']
     },
     module: {
         loaders: [
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: ['babel'], // 'babel-loader' is also a legal name to reference
                 query: {
@@ -24,8 +26,8 @@ module.exports = {
                 }
             },
             {
-                test: /\.json$/,
-                loader: 'ejs-loader?variable=data'
+                test: /\.scss$/,
+                loader: "style!css!sass"
             }
         ]
     }
