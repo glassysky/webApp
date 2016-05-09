@@ -22,12 +22,13 @@
     <div data-role="page" data-theme="a">
 
         <div data-role="header">
-            <a href="#" data-role="button" data-rel="back" class="ui-btn ui-btn-inline ui-corner-all">返回</a>
+            <a href="#" data-role="button" data-rel="back" class="ui-btn ui-btn-inline ui-corner-all">主页</a>
             <h1>新用户注册</h1>
         </div>
 
         <div data-role="content">
-            <form method="post" action="demo_form.php">
+
+            <form method="post" action="">
                 <div class="ui-field-contain">
                     <label for="fullname">姓名:</label>
                     <input type="text" name="fullname" id="fullname">
@@ -38,10 +39,12 @@
 
                     <label for="password">密码:</label>
                     <input type="password" name="password" id="password" placeholder="">
-                </div>
 
-                <input type="button" value="注册">
+                    <input id="do-upload" type="submit" value="上传" />
+                </div>
             </form>
+
+            <input type="button" value="注册">
         </div>
 
         <div data-role="footer">
