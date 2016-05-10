@@ -434,19 +434,18 @@
 	        var attr = _common2.default.transformIntoCamelCase(id);
 	        formInfo[attr] = $(this).val();
 	    });
-	    console.log(formInfo);
 	    return formInfo;
 	};
 
-	var sendPost = function sendPost() {
+	var sendPost = function sendPost(data) {
 	    $.ajax({
 	        type: 'POST',
-	        url: '/add/user',
-	        data: {},
+	        url: '/users/add',
+	        data: data,
 	        dataType: 'json',
-	        success: function success(data) {
-	            if (data.message === "success") {
-	                console.log("success");
+	        success: function success(res) {
+	            if (res.message === "success") {
+	                console.log(res.data);
 	            } else {
 	                console.log("failed");
 	            }
@@ -458,8 +457,8 @@
 	};
 
 	$("#sign-up-button").on("click", function (event) {
-	    getSignUpInfo();
-	    sendPost();
+	    var formInfo = getSignUpInfo();
+	    sendPost(formInfo);
 	});
 
 	module.exports = {};

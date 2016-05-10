@@ -14,7 +14,7 @@ fs.readdirSync('node_modules')
 module.exports = {
     target: 'node',
     entry: {
-        index: ['./entry/back-end/index.js']
+        signup: ['./entry/back-end/signup.js']
     },
     output: {
         path: path.join(__dirname, "./public/dist/back-end/"),

@@ -14,8 +14,4 @@ router.get('/signup', function(req, res, next) {
     res.render('signup', { title: 'Express' });
 });
 
-router.post('/add/user', function(req, res, next) {
-    res.json({ message: 'success' });
-});
-
 module.exports = router;
