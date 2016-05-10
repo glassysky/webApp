@@ -24,7 +24,7 @@ var sendPost = (data) => {
         data: data,
         dataType: 'json',
         success: function(res) {
-            if (res.message === "success") {
+            if (res.state === "success") {
                 console.log(res.data);
             } else {
                 console.log("failed");

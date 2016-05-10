@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(7);
+	module.exports = __webpack_require__(9);
 
 
 /***/ },
@@ -360,22 +360,46 @@
 
 
 /***/ },
-/* 7 */
+/* 7 */,
+/* 8 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports = {
+	    formInfoMapping: {
+	        fullName: {
+	            isRequired: true
+	        },
+	        passWord: {
+	            isRequired: true
+	        },
+	        stuID: {
+	            isRequired: true
+	        }
+	    },
+	    transformIntoCamelCase: function transformIntoCamelCase(string) {
+	        return $.camelCase(string);
+	    }
+	};
+
+/***/ },
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(8);
 	__webpack_require__(10);
+	__webpack_require__(12);
 
 /***/ },
-/* 8 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(9);
+	var content = __webpack_require__(11);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(6)(content, {});
@@ -395,7 +419,7 @@
 	}
 
 /***/ },
-/* 9 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -409,12 +433,12 @@
 
 
 /***/ },
-/* 10 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _common = __webpack_require__(11);
+	var _common = __webpack_require__(8);
 
 	var _common2 = _interopRequireDefault(_common);
 
@@ -444,7 +468,7 @@
 	        data: data,
 	        dataType: 'json',
 	        success: function success(res) {
-	            if (res.message === "success") {
+	            if (res.state === "success") {
 	                console.log(res.data);
 	            } else {
 	                console.log("failed");
@@ -462,29 +486,6 @@
 	});
 
 	module.exports = {};
-
-/***/ },
-/* 11 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	module.exports = {
-	    formInfoMapping: {
-	        fullName: {
-	            isRequired: true
-	        },
-	        passWord: {
-	            isRequired: true
-	        },
-	        stuID: {
-	            isRequired: true
-	        }
-	    },
-	    transformIntoCamelCase: function transformIntoCamelCase(string) {
-	        return $.camelCase(string);
-	    }
-	};
 
 /***/ }
 /******/ ]);

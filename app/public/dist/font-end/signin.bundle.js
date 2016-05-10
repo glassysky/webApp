@@ -55,6 +55,7 @@
 	'use strict';
 
 	__webpack_require__(3);
+	__webpack_require__(7);
 
 /***/ },
 /* 3 */
@@ -403,6 +404,88 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _common = __webpack_require__(8);
+
+	var _common2 = _interopRequireDefault(_common);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/*
+	formInfo 格式
+	fullName => 'string'
+	passWord => 'string'
+	stuID => 'string'
+	*/
+
+	var getSignUpInfo = function getSignUpInfo() {
+	    var formInfo = {};
+	    $("form").find("input").each(function () {
+	        var id = $(this).attr("id");
+	        var attr = _common2.default.transformIntoCamelCase(id);
+	        formInfo[attr] = $(this).val();
+	    });
+	    return formInfo;
+	};
+
+	var sendPost = function sendPost(data) {
+	    $.ajax({
+	        type: 'POST',
+	        url: '/users/log',
+	        data: data,
+	        dataType: 'json',
+	        success: function success(res) {
+	            if (res.state === "success") {
+	                // page redirection
+	                // session
+	                console.log("登录成功");
+	                window.location.href = "/";
+	            } else {
+	                console.log(res.data);
+	            }
+	        },
+	        error: function error() {
+	            console.log("Ajax error!");
+	        }
+	    });
+	};
+
+	$("#sign-in-button").on("click", function (event) {
+	    var formInfo = getSignUpInfo();
+
+	    sendPost(formInfo);
+	});
+
+	module.exports = {};
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports = {
+	    formInfoMapping: {
+	        fullName: {
+	            isRequired: true
+	        },
+	        passWord: {
+	            isRequired: true
+	        },
+	        stuID: {
+	            isRequired: true
+	        }
+	    },
+	    transformIntoCamelCase: function transformIntoCamelCase(string) {
+	        return $.camelCase(string);
+	    }
+	};
 
 /***/ }
 /******/ ]);

@@ -44,12 +44,65 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(5);
+	module.exports = __webpack_require__(7);
 
 
 /***/ },
 /* 1 */,
-/* 2 */,
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	// stuID => 学号
+	// pass => 密码
+	var Q = __webpack_require__(10);
+
+	var userModel = __webpack_require__(3);
+
+	function isMatch(user, result) {
+	    console.log(user.passWord);
+	    console.log(result.passWord);
+	    if (user.passWord === result.passWord) {
+	        return true;
+	    } else {
+	        return false;
+	    }
+	}
+
+	module.exports = {
+	    findUser: function findUser(user, Emitter) {
+	        var stuID = user.stuID;
+
+	        var query = userModel.findOne({
+	            stuID: stuID
+	        });
+
+	        query.then(function (result) {
+	            var callback = {};
+	            console.dir(user);
+
+	            if (result) {
+	                if (isMatch(user, result)) {
+	                    // info match
+	                    callback.state = "success";
+	                } else {
+	                    // error password
+	                    callback.state = "failed";
+	                    callback.data = "密码错误";
+	                }
+	            } else {
+	                // error stuID
+	                callback.state = "failed";
+	                callback.data = "学号错误";
+	            }
+
+	            Emitter.emit("finished", callback);
+	        });
+	    }
+	};
+
+/***/ },
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -95,14 +148,7 @@
 	module.exports = require("mongoose");
 
 /***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	__webpack_require__(6);
-
-/***/ },
+/* 5 */,
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -128,6 +174,78 @@
 	        return 1;
 	    }
 	};
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(8);
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var express = __webpack_require__(9);
+	var router = express.Router();
+	var EventEmitter = __webpack_require__(11);
+
+	var signUpController = __webpack_require__(6);
+	var signInController = __webpack_require__(2);
+
+	/* POST users listing. */
+	router.post('/add', function (req, res, next) {
+	    var newUser = req.body,
+	        state;
+
+	    if (signUpController.addUser(newUser)) {
+	        state = "success";
+	    } else {
+	        state = "error";
+	    }
+
+	    res.json({
+	        state: state,
+	        data: newUser
+	    });
+	});
+
+	router.post('/log', function (req, res, next) {
+	    var user = req.body,
+	        state,
+	        data;
+
+	    var resEE = new EventEmitter();
+	    resEE.on("finished", function (data) {
+	        res.json(data);
+	    });
+	    // myEE.emit("finished", 'abc');
+
+	    signInController.findUser(user, resEE);
+	});
+
+	module.exports = router;
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	module.exports = require("express");
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	module.exports = require("q");
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
+	module.exports = require("events");
 
 /***/ }
 /******/ ]);

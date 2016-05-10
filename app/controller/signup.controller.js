@@ -6,7 +6,9 @@ module.exports = {
         var newUser = new userModel(user);
 
         newUser.save(function(err, user) {
-            if (err) return console.log(err);
+            if (err) {
+                return console.log(err);
+            }
             user.confirm();
         });
 

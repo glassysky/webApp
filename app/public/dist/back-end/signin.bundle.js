@@ -44,12 +44,72 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(5);
+	module.exports = __webpack_require__(1);
 
 
 /***/ },
-/* 1 */,
-/* 2 */,
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(2);
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	// stuID => 学号
+	// pass => 密码
+	var Q = __webpack_require__(10);
+
+	var userModel = __webpack_require__(3);
+
+	function isMatch(user, result) {
+	    console.log(user.passWord);
+	    console.log(result.passWord);
+	    if (user.passWord === result.passWord) {
+	        return true;
+	    } else {
+	        return false;
+	    }
+	}
+
+	module.exports = {
+	    findUser: function findUser(user, Emitter) {
+	        var stuID = user.stuID;
+
+	        var query = userModel.findOne({
+	            stuID: stuID
+	        });
+
+	        query.then(function (result) {
+	            var callback = {};
+	            console.dir(user);
+
+	            if (result) {
+	                if (isMatch(user, result)) {
+	                    // info match
+	                    callback.state = "success";
+	                } else {
+	                    // error password
+	                    callback.state = "failed";
+	                    callback.data = "密码错误";
+	                }
+	            } else {
+	                // error stuID
+	                callback.state = "failed";
+	                callback.data = "学号错误";
+	            }
+
+	            Emitter.emit("finished", callback);
+	        });
+	    }
+	};
+
+/***/ },
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -95,39 +155,15 @@
 	module.exports = require("mongoose");
 
 /***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */
+/***/ function(module, exports) {
 
-	'use strict';
-
-	__webpack_require__(6);
-
-/***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var userModel = __webpack_require__(3);
-
-	module.exports = {
-	    addUser: function addUser(user) {
-
-	        var newUser = new userModel(user);
-
-	        newUser.save(function (err, user) {
-	            if (err) {
-	                return console.log(err);
-	            }
-	            user.confirm();
-	        });
-
-	        return true;
-	    },
-	    test: function test() {
-	        return 1;
-	    }
-	};
+	module.exports = require("q");
 
 /***/ }
 /******/ ]);
