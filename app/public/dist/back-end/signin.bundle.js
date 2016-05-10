@@ -63,9 +63,9 @@
 
 	// stuID => 学号
 	// pass => 密码
-	var Q = __webpack_require__(10);
+	var Q = __webpack_require__(3);
 
-	var userModel = __webpack_require__(3);
+	var userModel = __webpack_require__(4);
 
 	function isMatch(user, result) {
 	    console.log(user.passWord);
@@ -111,11 +111,17 @@
 
 /***/ },
 /* 3 */
+/***/ function(module, exports) {
+
+	module.exports = require("q");
+
+/***/ },
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var mongoose = __webpack_require__(4);
+	var mongoose = __webpack_require__(5);
 
 	var userSchema = mongoose.Schema({
 	    fullName: String,
@@ -123,47 +129,19 @@
 	    stuID: String
 	});
 
-	userSchema.methods.confirm = function () {
-	    console.log("ok");
-	};
+	// userSchema.methods.confirm = function() {
+	//     console.log("ok");
+	// }
 
 	var User = mongoose.model('User', userSchema);
-
-	// var bao = new User({
-	//     name: 'bao'
-	// });
-	// bao.save(function(err, user) {
-	//     if (err) return console.log(err);
-	//     user.speak();
-	// });
-	// cui.save(function(err, user) {
-	//     if (err) return console.log(err);
-	//     user.speak();
-	// });
-	//
-	// User.find(function (err, user) {
-	//     if (err) return console.error(err);
-	//     console.log(user);
-	// });
 
 	module.exports = User;
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports) {
 
 	module.exports = require("mongoose");
-
-/***/ },
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */
-/***/ function(module, exports) {
-
-	module.exports = require("q");
 
 /***/ }
 /******/ ]);

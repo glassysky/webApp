@@ -44,18 +44,19 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(5);
+	module.exports = __webpack_require__(6);
 
 
 /***/ },
 /* 1 */,
 /* 2 */,
-/* 3 */
+/* 3 */,
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var mongoose = __webpack_require__(4);
+	var mongoose = __webpack_require__(5);
 
 	var userSchema = mongoose.Schema({
 	    fullName: String,
@@ -63,44 +64,19 @@
 	    stuID: String
 	});
 
-	userSchema.methods.confirm = function () {
-	    console.log("ok");
-	};
+	// userSchema.methods.confirm = function() {
+	//     console.log("ok");
+	// }
 
 	var User = mongoose.model('User', userSchema);
-
-	// var bao = new User({
-	//     name: 'bao'
-	// });
-	// bao.save(function(err, user) {
-	//     if (err) return console.log(err);
-	//     user.speak();
-	// });
-	// cui.save(function(err, user) {
-	//     if (err) return console.log(err);
-	//     user.speak();
-	// });
-	//
-	// User.find(function (err, user) {
-	//     if (err) return console.error(err);
-	//     console.log(user);
-	// });
 
 	module.exports = User;
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports) {
 
 	module.exports = require("mongoose");
-
-/***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	__webpack_require__(6);
 
 /***/ },
 /* 6 */
@@ -108,24 +84,44 @@
 
 	'use strict';
 
-	var userModel = __webpack_require__(3);
+	__webpack_require__(7);
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var userModel = __webpack_require__(4);
 
 	module.exports = {
-	    addUser: function addUser(user) {
+	    addUser: function addUser(user, Emitter) {
+	        var query = userModel.findOne({ stuID: user.stuID });
 
-	        var newUser = new userModel(user);
+	        query.then(function (result) {
 
-	        newUser.save(function (err, user) {
-	            if (err) {
-	                return console.log(err);
+	            var callback = {};
+
+	            if (result) {
+	                // stuID has been registed
+
+	                callback.state = "failed";
+	                callback.data = "学号已被注册过";
+	                Emitter.emit("finished", callback);
+	            } else {
+	                // stuID can be registed
+
+	                var newUser = new userModel(user);
+
+	                newUser.save(function (err, user) {
+	                    if (err) {
+	                        return console.log(err);
+	                    }
+	                    callback.state = "success";
+	                    Emitter.emit("finished", callback);
+	                });
 	            }
-	            user.confirm();
 	        });
-
-	        return true;
-	    },
-	    test: function test() {
-	        return 1;
 	    }
 	};
 

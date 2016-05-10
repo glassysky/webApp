@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(7);
+	module.exports = __webpack_require__(8);
 
 
 /***/ },
@@ -56,9 +56,9 @@
 
 	// stuID => 学号
 	// pass => 密码
-	var Q = __webpack_require__(10);
+	var Q = __webpack_require__(3);
 
-	var userModel = __webpack_require__(3);
+	var userModel = __webpack_require__(4);
 
 	function isMatch(user, result) {
 	    console.log(user.passWord);
@@ -104,11 +104,17 @@
 
 /***/ },
 /* 3 */
+/***/ function(module, exports) {
+
+	module.exports = require("q");
+
+/***/ },
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var mongoose = __webpack_require__(4);
+	var mongoose = __webpack_require__(5);
 
 	var userSchema = mongoose.Schema({
 	    fullName: String,
@@ -116,72 +122,59 @@
 	    stuID: String
 	});
 
-	userSchema.methods.confirm = function () {
-	    console.log("ok");
-	};
+	// userSchema.methods.confirm = function() {
+	//     console.log("ok");
+	// }
 
 	var User = mongoose.model('User', userSchema);
-
-	// var bao = new User({
-	//     name: 'bao'
-	// });
-	// bao.save(function(err, user) {
-	//     if (err) return console.log(err);
-	//     user.speak();
-	// });
-	// cui.save(function(err, user) {
-	//     if (err) return console.log(err);
-	//     user.speak();
-	// });
-	//
-	// User.find(function (err, user) {
-	//     if (err) return console.error(err);
-	//     console.log(user);
-	// });
 
 	module.exports = User;
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports) {
 
 	module.exports = require("mongoose");
 
 /***/ },
-/* 5 */,
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var userModel = __webpack_require__(3);
-
-	module.exports = {
-	    addUser: function addUser(user) {
-
-	        var newUser = new userModel(user);
-
-	        newUser.save(function (err, user) {
-	            if (err) {
-	                return console.log(err);
-	            }
-	            user.confirm();
-	        });
-
-	        return true;
-	    },
-	    test: function test() {
-	        return 1;
-	    }
-	};
-
-/***/ },
+/* 6 */,
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
-	__webpack_require__(8);
+	var userModel = __webpack_require__(4);
+
+	module.exports = {
+	    addUser: function addUser(user, Emitter) {
+	        var query = userModel.findOne({ stuID: user.stuID });
+
+	        query.then(function (result) {
+
+	            var callback = {};
+
+	            if (result) {
+	                // stuID has been registed
+
+	                callback.state = "failed";
+	                callback.data = "学号已被注册过";
+	                Emitter.emit("finished", callback);
+	            } else {
+	                // stuID can be registed
+
+	                var newUser = new userModel(user);
+
+	                newUser.save(function (err, user) {
+	                    if (err) {
+	                        return console.log(err);
+	                    }
+	                    callback.state = "success";
+	                    Emitter.emit("finished", callback);
+	                });
+	            }
+	        });
+	    }
+	};
 
 /***/ },
 /* 8 */
@@ -189,11 +182,19 @@
 
 	'use strict';
 
-	var express = __webpack_require__(9);
+	__webpack_require__(9);
+
+/***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var express = __webpack_require__(10);
 	var router = express.Router();
 	var EventEmitter = __webpack_require__(11);
 
-	var signUpController = __webpack_require__(6);
+	var signUpController = __webpack_require__(7);
 	var signInController = __webpack_require__(2);
 
 	/* POST users listing. */
@@ -201,16 +202,12 @@
 	    var newUser = req.body,
 	        state;
 
-	    if (signUpController.addUser(newUser)) {
-	        state = "success";
-	    } else {
-	        state = "error";
-	    }
-
-	    res.json({
-	        state: state,
-	        data: newUser
+	    var addEE = new EventEmitter();
+	    addEE.on("finished", function (data) {
+	        res.json(data);
 	    });
+
+	    signUpController.addUser(newUser, addEE);
 	});
 
 	router.post('/log', function (req, res, next) {
@@ -218,28 +215,21 @@
 	        state,
 	        data;
 
-	    var resEE = new EventEmitter();
-	    resEE.on("finished", function (data) {
+	    var logEE = new EventEmitter();
+	    logEE.on("finished", function (data) {
 	        res.json(data);
 	    });
-	    // myEE.emit("finished", 'abc');
 
-	    signInController.findUser(user, resEE);
+	    signInController.findUser(user, logEE);
 	});
 
 	module.exports = router;
 
 /***/ },
-/* 9 */
-/***/ function(module, exports) {
-
-	module.exports = require("express");
-
-/***/ },
 /* 10 */
 /***/ function(module, exports) {
 
-	module.exports = require("q");
+	module.exports = require("express");
 
 /***/ },
 /* 11 */

@@ -25,9 +25,12 @@ var sendPost = (data) => {
         dataType: 'json',
         success: function(res) {
             if (res.state === "success") {
-                console.log(res.data);
+                // registe successful
+                // session
+                console.log("注册成功");
+                window.location.href = "/";
             } else {
-                console.log("failed");
+                console.log(res.data);
             }
         },
         error: function(){
@@ -38,6 +41,7 @@ var sendPost = (data) => {
 
 $("#sign-up-button").on("click", function(event) {
     var formInfo = getSignUpInfo();
+
     sendPost(formInfo);
 });
 

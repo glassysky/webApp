@@ -10,16 +10,12 @@ router.post('/add', function(req, res, next) {
     var newUser = req.body,
         state;
 
-    if(signUpController.addUser(newUser)){
-        state = "success";
-    } else {
-        state = "error";
-    }
-
-    res.json({
-        state: state,
-        data: newUser
+    var addEE = new EventEmitter();
+    addEE.on("finished", function(data){
+        res.json(data);
     });
+
+    signUpController.addUser(newUser, addEE);
 });
 
 router.post('/log', function(req, res, next) {
@@ -27,13 +23,12 @@ router.post('/log', function(req, res, next) {
         state,
         data;
 
-    var resEE = new EventEmitter();
-    resEE.on("finished", function(data){
+    var logEE = new EventEmitter();
+    logEE.on("finished", function(data){
         res.json(data);
     });
-    // myEE.emit("finished", 'abc');
 
-    signInController.findUser(user, resEE);
+    signInController.findUser(user, logEE);
 
 });
 
