@@ -15,7 +15,7 @@
 
     <!-- 引入 jQuery Mobile 库 -->
     <script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-
+    <script src="http://apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js"></script>
 </head>
 <body>
 
@@ -30,22 +30,22 @@
 
             <form method="post" action="">
                 <div class="ui-field-contain">
-                    <label for="fullname">姓名:</label>
-                    <input type="text" name="fullname" id="fullname">
+                    <label for="full-name">姓名:</label>
+                    <input type="text" name="fullname" id="full-name">
 
 
                     <label for="stuID">学号:</label>
                     <input type="text" name="stuID" id="stuID">
 
-                    <label for="password">密码:</label>
-                    <input type="password" name="password" id="password" placeholder="">
+                    <label for="pass-word">密码:</label>
+                    <input type="password" name="password" id="pass-word" placeholder="">
 
                     <!-- <input id="selece-files" type="file" name="fileToUpload" />
                     <input id="do-upload" type="submit" value="上传" /> -->
                 </div>
             </form>
 
-            <input type="button" value="注册">
+            <input type="button" value="注册" id="sign-up-button">
             <span>已有账号？</span><a href="/signin">登录</a>
         </div>
 
@@ -54,6 +54,6 @@
         </div>
 
     </div>
-    <script src="/dist/font-end/signin.bundle.js"></script>
+    <script src="/dist/font-end/signup.bundle.js"></script>
 </body>
 </html>

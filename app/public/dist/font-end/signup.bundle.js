@@ -366,6 +366,7 @@
 	'use strict';
 
 	__webpack_require__(8);
+	__webpack_require__(10);
 
 /***/ },
 /* 8 */
@@ -406,6 +407,85 @@
 
 	// exports
 
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _common = __webpack_require__(11);
+
+	var _common2 = _interopRequireDefault(_common);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/*
+	formInfo 格式
+	fullName => 'string'
+	passWord => 'string'
+	stuID => 'string'
+	*/
+
+	var getSignUpInfo = function getSignUpInfo() {
+	    var formInfo = {};
+	    $("form").find("input").each(function () {
+	        var id = $(this).attr("id");
+	        var attr = _common2.default.transformIntoCamelCase(id);
+	        formInfo[attr] = $(this).val();
+	    });
+	    console.log(formInfo);
+	    return formInfo;
+	};
+
+	var sendPost = function sendPost() {
+	    $.ajax({
+	        type: 'POST',
+	        url: '/add/user',
+	        data: {},
+	        dataType: 'json',
+	        success: function success(data) {
+	            if (data.message === "success") {
+	                console.log("success");
+	            } else {
+	                console.log("failed");
+	            }
+	        },
+	        error: function error() {
+	            console.log("Ajax error!");
+	        }
+	    });
+	};
+
+	$("#sign-up-button").on("click", function (event) {
+	    getSignUpInfo();
+	    sendPost();
+	});
+
+	module.exports = {};
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports = {
+	    formInfoMapping: {
+	        fullName: {
+	            isRequired: true
+	        },
+	        passWord: {
+	            isRequired: true
+	        },
+	        stuID: {
+	            isRequired: true
+	        }
+	    },
+	    transformIntoCamelCase: function transformIntoCamelCase(string) {
+	        return $.camelCase(string);
+	    }
+	};
 
 /***/ }
 /******/ ]);
