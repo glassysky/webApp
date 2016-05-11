@@ -4,9 +4,14 @@ var name = "";
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    var date = new Date();
-    var time = date.getHours();
-    var greeting = "";
+    var date = new Date(),
+        time = date.getHours(),
+        year = date.getFullYear(),
+        month = date.getMonth(),
+        day = date.getDate(),
+        week = date.getDay(),
+        greeting = "";
+        time = year + "/" + month + "/" + day;
 
     if (req.session.user) {
         name = req.session.user.fullName;
@@ -30,7 +35,8 @@ router.get('/', function(req, res, next) {
 
     res.render('index', {
         name: name,
-        greeting: greeting
+        greeting: greeting,
+        time: "time"
      });
 });
 
