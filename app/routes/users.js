@@ -29,18 +29,23 @@ router.post('/log', function(req, res, next) {
         state,
         data;
 
-    var logEE = new EventEmitter();
-    logEE.on("finished", function(callback){
-        if(callback.state === "success") {
-            req.session.user = {
-                stuID: callback.data.stuID,
-                fullName: callback.data.fullName
-            };
-        }
-        res.json(callback);
-    });
+    // var logEE = new EventEmitter();
+    // logEE.on("finished", function(callback){
+    //     if(callback.state === "success") {
+    //         req.session.user = {
+    //             stuID: callback.data.stuID,
+    //             fullName: callback.data.fullName
+    //         };
+    //     }
+    //     res.json(callback);
+    // });
+    //
+    // signInController.findUser(user, logEE);
 
-    signInController.findUser(user, logEE);
+    res.json({
+        state: "success",
+        data: "test"
+    });
 
 });
 
