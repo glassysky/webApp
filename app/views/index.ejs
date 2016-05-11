@@ -22,7 +22,11 @@
     <div data-role="page" data-theme="a">
 
         <div data-role="header">
-            <a href="javascript:void(0)" class="ui-btn ui-icon-minus ui-btn-icon-left ui-btn-right" id="user-logout">注销</a>
+            <% if (name === "同学") { %>
+                <a href="javascript:window.location.href='/signin'" class="ui-btn ui-btn-right" id="user-log">登录</a>
+            <% } else { %>
+                <a href="javascript:void(0)" class="ui-btn ui-icon-minus ui-btn-icon-left ui-btn-right" id="user-logout">注销</a>
+            <% } %>
             <h1>最新动态</h1>
         </div>
 
@@ -34,8 +38,12 @@
                         <span class="username"><%= name %></span>
                     </div>
                     <div class="ui-block-b">
-                        <span class="date">2016/5/10 </span>
-                        <span class="weather">晴</span>
+                        <span class="date">
+                            <%= time %> &nbsp;
+                        </span>
+                        <span class="week">
+                            <%= week %>
+                        </span>
                     </div>
                 </div>
             </div>
