@@ -443,11 +443,12 @@
 	        success: function success(res) {
 	            if (res.state === "success") {
 	                // page redirection
-	                // session
-	                console.log("登录成功");
+	                // console.log("登录成功");
+	                alert("登陆成功");
 	                window.location.href = "/";
 	            } else {
-	                console.log(res.data);
+	                alert(res.data);
+	                // console.log(res.data);
 	            }
 	        },
 	        error: function error() {
