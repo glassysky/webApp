@@ -467,7 +467,7 @@
 
 
 	// module
-	exports.push([module.id, ".ui-page .ui-content {\n  padding: 20px 30px; }\n  .ui-page .ui-content form .ui-field-contain .ui-input-text {\n    margin-bottom: 5px; }\n\n.ui-page .ui-footer h1 {\n  font-size: 0.8em; }\n", ""]);
+	exports.push([module.id, ".ui-page .ui-content {\n  padding: 20px 30px; }\n  .ui-page .ui-content form .ui-field-contain .ui-input-text {\n    margin-bottom: 5px; }\n\n.ui-page .ui-footer h1 {\n  font-size: 0.8em; }\n\n#publish-button {\n  background-color: #abc; }\n", ""]);
 
 	// exports
 
