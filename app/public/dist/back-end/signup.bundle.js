@@ -44,19 +44,18 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(6);
+	module.exports = __webpack_require__(5);
 
 
 /***/ },
 /* 1 */,
 /* 2 */,
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var mongoose = __webpack_require__(5);
+	var mongoose = __webpack_require__(4);
 
 	var userSchema = mongoose.Schema({
 	    fullName: String,
@@ -69,26 +68,26 @@
 	module.exports = User;
 
 /***/ },
-/* 5 */
+/* 4 */
 /***/ function(module, exports) {
 
 	module.exports = require("mongoose");
 
 /***/ },
-/* 6 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(7);
+	__webpack_require__(6);
 
 /***/ },
-/* 7 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var userModel = __webpack_require__(4);
+	var userModel = __webpack_require__(3);
 
 	module.exports = {
 	    addUser: function addUser(user, Emitter) {

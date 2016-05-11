@@ -46,7 +46,12 @@ router.post('/log', function(req, res, next) {
 
 // 用户登出
 router.post('/logout', function (req, res, next) {
-    
-})
+    req.session.destroy(function (err) {
+        if (err) console.log(err);
+        res.json({
+            state: "success"
+        });
+    });
+});
 
 module.exports = router;

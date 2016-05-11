@@ -53,50 +53,13 @@
 
 	'use strict';
 
-	__webpack_require__(3);
+	__webpack_require__(14);
+	__webpack_require__(13);
 
 /***/ },
 /* 2 */,
-/* 3 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(4);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(6)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./signin.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./signin.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(5)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".ui-page .ui-content {\n  padding: 20px 30px; }\n  .ui-page .ui-content form .ui-field-contain .ui-input-text {\n    margin-bottom: 5px; }\n\n.ui-page .ui-footer h1 {\n  font-size: 0.8em; }\n", ""]);
-
-	// exports
-
-
-/***/ },
+/* 3 */,
+/* 4 */,
 /* 5 */
 /***/ function(module, exports) {
 
@@ -402,6 +365,111 @@
 		if(oldSrc)
 			URL.revokeObjectURL(oldSrc);
 	}
+
+
+/***/ },
+/* 7 */,
+/* 8 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports = {
+	    formInfoMapping: {
+	        fullName: {
+	            isRequired: true
+	        },
+	        passWord: {
+	            isRequired: true
+	        },
+	        stuID: {
+	            isRequired: true
+	        }
+	    },
+	    transformIntoCamelCase: function transformIntoCamelCase(string) {
+	        return $.camelCase(string);
+	    }
+	};
+
+/***/ },
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _common = __webpack_require__(8);
+
+	var _common2 = _interopRequireDefault(_common);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/*
+	formInfo 格式
+	fullName => 'string'
+	passWord => 'string'
+	stuID => 'string'
+	*/
+	$("#user-logout").on("click", function (event) {
+	    $.ajax({
+	        type: 'POST',
+	        url: '/users/logout',
+	        success: function success(result) {
+	            if (result.state === "success") {
+	                window.location.href = "/signin";
+	            } else {
+	                alert("注销失败");
+	            }
+	        },
+	        error: function error() {
+	            console.log("Ajax error!");
+	        }
+	    });
+	});
+
+	module.exports = {};
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(15);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(6)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./index.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./index.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 15 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(5)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".ui-page .ui-content {\n  padding: 20px 30px; }\n  .ui-page .ui-content form .ui-field-contain .ui-input-text {\n    margin-bottom: 5px; }\n\n.ui-page .ui-footer h1 {\n  font-size: 0.8em; }\n", ""]);
+
+	// exports
 
 
 /***/ }

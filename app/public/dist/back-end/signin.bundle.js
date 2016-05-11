@@ -64,7 +64,7 @@
 	// stuID => 学号
 	// pass => 密码
 
-	var userModel = __webpack_require__(4);
+	var userModel = __webpack_require__(3);
 
 	function isMatch(user, result) {
 	    console.log(user.passWord);
@@ -110,13 +110,12 @@
 	};
 
 /***/ },
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var mongoose = __webpack_require__(5);
+	var mongoose = __webpack_require__(4);
 
 	var userSchema = mongoose.Schema({
 	    fullName: String,
@@ -129,7 +128,7 @@
 	module.exports = User;
 
 /***/ },
-/* 5 */
+/* 4 */
 /***/ function(module, exports) {
 
 	module.exports = require("mongoose");

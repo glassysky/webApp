@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(8);
+	module.exports = __webpack_require__(7);
 
 
 /***/ },
@@ -57,7 +57,7 @@
 	// stuID => 学号
 	// pass => 密码
 
-	var userModel = __webpack_require__(4);
+	var userModel = __webpack_require__(3);
 
 	function isMatch(user, result) {
 	    console.log(user.passWord);
@@ -103,13 +103,12 @@
 	};
 
 /***/ },
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var mongoose = __webpack_require__(5);
+	var mongoose = __webpack_require__(4);
 
 	var userSchema = mongoose.Schema({
 	    fullName: String,
@@ -122,19 +121,19 @@
 	module.exports = User;
 
 /***/ },
-/* 5 */
+/* 4 */
 /***/ function(module, exports) {
 
 	module.exports = require("mongoose");
 
 /***/ },
-/* 6 */,
-/* 7 */
+/* 5 */,
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var userModel = __webpack_require__(4);
+	var userModel = __webpack_require__(3);
 
 	module.exports = {
 	    addUser: function addUser(user, Emitter) {
@@ -169,25 +168,25 @@
 	};
 
 /***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(8);
+
+/***/ },
 /* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(9);
-
-/***/ },
-/* 9 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var express = __webpack_require__(10);
+	var express = __webpack_require__(9);
 	var router = express.Router();
-	var events = __webpack_require__(11);
+	var events = __webpack_require__(10);
 	var Emitter = events.EventEmitter;
 
-	var signUpController = __webpack_require__(7);
+	var signUpController = __webpack_require__(6);
 	var signInController = __webpack_require__(2);
 
 	// 用户注册
@@ -228,18 +227,25 @@
 	});
 
 	// 用户登出
-	router.post('/logout', function (req, res, next) {});
+	router.post('/logout', function (req, res, next) {
+	    req.session.destroy(function (err) {
+	        if (err) console.log(err);
+	        res.json({
+	            state: "success"
+	        });
+	    });
+	});
 
 	module.exports = router;
 
 /***/ },
-/* 10 */
+/* 9 */
 /***/ function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ },
-/* 11 */
+/* 10 */
 /***/ function(module, exports) {
 
 	module.exports = require("events");
