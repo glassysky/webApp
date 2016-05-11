@@ -1,6 +1,5 @@
 // stuID => 学号
 // pass => 密码
-var Q = require('q');
 
 var userModel = require('../model/usersModel.js');
 

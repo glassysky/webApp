@@ -59,11 +59,10 @@
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	// stuID => 学号
 	// pass => 密码
-	var Q = __webpack_require__(3);
 
 	var userModel = __webpack_require__(4);
 
@@ -111,12 +110,7 @@
 	};
 
 /***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	module.exports = require("q");
-
-/***/ },
+/* 3 */,
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -129,10 +123,6 @@
 	    passWord: String,
 	    stuID: String
 	});
-
-	// userSchema.methods.confirm = function() {
-	//     console.log("ok");
-	// }
 
 	var User = mongoose.model('User', userSchema);
 

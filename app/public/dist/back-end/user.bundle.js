@@ -52,11 +52,10 @@
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	// stuID => 学号
 	// pass => 密码
-	var Q = __webpack_require__(3);
 
 	var userModel = __webpack_require__(4);
 
@@ -104,12 +103,7 @@
 	};
 
 /***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	module.exports = require("q");
-
-/***/ },
+/* 3 */,
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -122,10 +116,6 @@
 	    passWord: String,
 	    stuID: String
 	});
-
-	// userSchema.methods.confirm = function() {
-	//     console.log("ok");
-	// }
 
 	var User = mongoose.model('User', userSchema);
 
@@ -194,17 +184,17 @@
 
 	var express = __webpack_require__(10);
 	var router = express.Router();
-	var EventEmitter = __webpack_require__(11);
+	var events = __webpack_require__(11);
+	var Emitter = events.EventEmitter;
 
 	var signUpController = __webpack_require__(7);
 	var signInController = __webpack_require__(2);
 
-	/* POST users listing. */
+	// 用户注册
 	router.post('/add', function (req, res, next) {
-	    var newUser = req.body,
-	        state;
+	    var newUser = req.body;
 
-	    var addEE = new EventEmitter();
+	    var addEE = new Emitter();
 	    addEE.on("finished", function (callback) {
 	        if (callback.state === "success") {
 	            req.session.user = {
@@ -217,30 +207,28 @@
 
 	    signUpController.addUser(newUser, addEE);
 	});
-
+	// 用户登录
 	router.post('/log', function (req, res, next) {
 	    var user = req.body,
 	        state,
 	        data;
 
-	    // var logEE = new EventEmitter();
-	    // logEE.on("finished", function(callback){
-	    //     if(callback.state === "success") {
-	    //         req.session.user = {
-	    //             stuID: callback.data.stuID,
-	    //             fullName: callback.data.fullName
-	    //         };
-	    //     }
-	    //     res.json(callback);
-	    // });
-	    //
-	    // signInController.findUser(user, logEE);
-
-	    res.json({
-	        state: "success",
-	        data: "test"
+	    var logEE = new Emitter();
+	    logEE.on("finished", function (callback) {
+	        if (callback.state === "success") {
+	            req.session.user = {
+	                stuID: callback.data.stuID,
+	                fullName: callback.data.fullName
+	            };
+	        }
+	        res.json(callback);
 	    });
+
+	    signInController.findUser(user, logEE);
 	});
+
+	// 用户登出
+	router.post('/logout', function (req, res, next) {});
 
 	module.exports = router;
 

@@ -64,10 +64,6 @@
 	    stuID: String
 	});
 
-	// userSchema.methods.confirm = function() {
-	//     console.log("ok");
-	// }
-
 	var User = mongoose.model('User', userSchema);
 
 	module.exports = User;
