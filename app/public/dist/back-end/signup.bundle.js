@@ -118,6 +118,7 @@
 	                        return console.log(err);
 	                    }
 	                    callback.state = "success";
+	                    callback.data = user;
 	                    Emitter.emit("finished", callback);
 	                });
 	            }

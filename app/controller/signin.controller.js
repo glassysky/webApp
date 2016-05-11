@@ -24,12 +24,13 @@ module.exports = {
 
         query.then(function (result) {
             var callback = {};
-            console.dir(user);
+            // console.dir(user);
 
             if (result) {
                 if (isMatch (user, result)) {
                     // info match
                     callback.state = "success";
+                    callback.data = result;
                 } else {
                     // error password
                     callback.state = "failed";

@@ -80,12 +80,13 @@
 
 	        query.then(function (result) {
 	            var callback = {};
-	            console.dir(user);
+	            // console.dir(user);
 
 	            if (result) {
 	                if (isMatch(user, result)) {
 	                    // info match
 	                    callback.state = "success";
+	                    callback.data = result;
 	                } else {
 	                    // error password
 	                    callback.state = "failed";
@@ -169,6 +170,7 @@
 	                        return console.log(err);
 	                    }
 	                    callback.state = "success";
+	                    callback.data = user;
 	                    Emitter.emit("finished", callback);
 	                });
 	            }
@@ -203,8 +205,14 @@
 	        state;
 
 	    var addEE = new EventEmitter();
-	    addEE.on("finished", function (data) {
-	        res.json(data);
+	    addEE.on("finished", function (callback) {
+	        if (callback.state === "success") {
+	            req.session.user = {
+	                stuID: callback.data.stuID,
+	                fullName: callback.data.fullName
+	            };
+	        }
+	        res.json(callback);
 	    });
 
 	    signUpController.addUser(newUser, addEE);
@@ -216,8 +224,14 @@
 	        data;
 
 	    var logEE = new EventEmitter();
-	    logEE.on("finished", function (data) {
-	        res.json(data);
+	    logEE.on("finished", function (callback) {
+	        if (callback.state === "success") {
+	            req.session.user = {
+	                stuID: callback.data.stuID,
+	                fullName: callback.data.fullName
+	            };
+	        }
+	        res.json(callback);
 	    });
 
 	    signInController.findUser(user, logEE);

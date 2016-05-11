@@ -11,8 +11,14 @@ router.post('/add', function(req, res, next) {
         state;
 
     var addEE = new EventEmitter();
-    addEE.on("finished", function(data){
-        res.json(data);
+    addEE.on("finished", function(callback){
+        if(callback.state === "success") {
+            req.session.user = {
+                stuID: callback.data.stuID,
+                fullName: callback.data.fullName
+            };
+        }
+        res.json(callback);
     });
 
     signUpController.addUser(newUser, addEE);
@@ -24,8 +30,14 @@ router.post('/log', function(req, res, next) {
         data;
 
     var logEE = new EventEmitter();
-    logEE.on("finished", function(data){
-        res.json(data);
+    logEE.on("finished", function(callback){
+        if(callback.state === "success") {
+            req.session.user = {
+                stuID: callback.data.stuID,
+                fullName: callback.data.fullName
+            };
+        }
+        res.json(callback);
     });
 
     signInController.findUser(user, logEE);
