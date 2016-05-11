@@ -2,16 +2,18 @@ var express = require('express');
 var router = express.Router();
 var name = "";
 
+var weekMap = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
     var date = new Date(),
         time = date.getHours(),
         year = date.getFullYear(),
-        month = date.getMonth(),
+        month = date.getMonth() + 1,
         day = date.getDate(),
         week = date.getDay(),
         greeting = "";
-        time = year + "/" + month + "/" + day;
+        mydate = year + "/" + month + "/" + day;
 
     if (req.session.user) {
         name = req.session.user.fullName;
@@ -36,7 +38,8 @@ router.get('/', function(req, res, next) {
     res.render('index', {
         name: name,
         greeting: greeting,
-        time: "time"
+        time: mydate,
+        week: weekMap[week]
      });
 });
 

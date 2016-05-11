@@ -23,9 +23,9 @@
 
         <div data-role="header">
             <% if (name === "同学") { %>
-                <a href="javascript:void(0)" class="ui-btn ui-btn-icon-left ui-btn-right" id="user-log">登录</a>
+                <a href="javascript:window.location.href='/signin'" class="ui-btn ui-btn-icon-left ui-btn-right" id="user-log">登录</a>
             <% } else { %>
-                <a href="javascript:void(0)" class="ui-btn ui-icon-minus ui-btn-icon-left ui-btn-right" id="user-logout">注销</a>
+                <a href="javascript:void(0)" class="ui-btn ui-btn-right" id="user-logout">注销</a>
             <% } %>
             <h1>最新动态</h1>
         </div>
@@ -41,7 +41,9 @@
                         <span class="date">
                             <%= time %>
                         </span>
-                        <span class="weather">晴</span>
+                        <span class="week">
+                            <%= week %>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -50,7 +52,11 @@
                 <form method="post" action="demo_form.php">
                     <div class="ui-field-contain">
                         <input name="addinfo" id="mood" type="text" placeholder="此刻想说点什么..."></input>
-                        <a href="" data-role="button" data-inline="true" class="ui-btn ui-shadow ui-corner-all" id="publish-button">发表</a>
+                        <% if (name === "同学") { %>
+                            <a href="javascript:window.location.href='/signin'" data-role="button" data-inline="true" class="ui-btn ui-shadow ui-corner-all" id="alert-button">请先登录</a>
+                        <% } else { %>
+                            <a href="javascript:void(0)" data-role="button" data-inline="true" class="ui-btn ui-shadow ui-corner-all" id="publish-button">发表</a>
+                        <% } %>
                     </div>
                 </form>
 

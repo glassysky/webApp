@@ -55,6 +55,7 @@
 
 	__webpack_require__(14);
 	__webpack_require__(13);
+	__webpack_require__(16);
 
 /***/ },
 /* 2 */,
@@ -471,6 +472,22 @@
 
 	// exports
 
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _common = __webpack_require__(8);
+
+	var _common2 = _interopRequireDefault(_common);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	$("#publish-button").on("click", function (event) {});
+
+	module.exports = {};
 
 /***/ }
 /******/ ]);
