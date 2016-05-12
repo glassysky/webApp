@@ -1,0 +1,5 @@
+express	/Users/cuitianhao/Github/webApp/app/routes/index.js	/^var express = require('express');$/;"	variable	line:1
+ejs	/Users/cuitianhao/Github/webApp/app/routes/index.js	/^var ejs = require('ejs');$/;"	variable	line:2
+router	/Users/cuitianhao/Github/webApp/app/routes/index.js	/^var router = express.Router();$/;"	variable	line:3
+name	/Users/cuitianhao/Github/webApp/app/routes/index.js	/^var name = "";$/;"	variable	line:4
+weekMap	/Users/cuitianhao/Github/webApp/app/routes/index.js	/^var weekMap = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];$/;"	variable	line:6

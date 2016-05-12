@@ -1,4 +1,5 @@
 var express = require('express');
+var ejs = require('ejs');
 var router = express.Router();
 var name = "";
 
@@ -12,8 +13,8 @@ router.get('/', function(req, res, next) {
         month = date.getMonth() + 1,
         day = date.getDate(),
         week = date.getDay(),
-        greeting = "",
-        mydate = year + "/" + month + "/" + day;
+        greeting = '',
+        time = '';
 
     if (req.session.user) {
         name = req.session.user.fullName;
@@ -35,11 +36,14 @@ router.get('/', function(req, res, next) {
         greeting = "该休息了";
     }
 
+    time = year + "年" + month + "月" + day;
+    week = weekMap[week];
+
     res.render('index', {
         name: name,
         greeting: greeting,
-        time: mydate,
-        week: weekMap[week]
+        time: time,
+        week: week
      });
 });
 
