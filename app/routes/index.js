@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
         day = date.getDate(),
         week = date.getDay(),
         greeting = '',
-        time = '';
+        timeInfo = '';
 
     if (req.session.user) {
         name = req.session.user.fullName;
@@ -32,17 +32,17 @@ router.get('/', function(req, res, next) {
         greeting = "下午好";
     } else if (time >= 18 && time < 23) {
         greeting = "晚上好";
-    } else if (time == 23 || (time >= 0 && time <9)) {
+    } else if (time == 23 || (time >= 0 && time < 9)) {
         greeting = "该休息了";
     }
 
-    time = year + "年" + month + "月" + day;
+    timeInfo = year + "/" + month + "/" + day;
     week = weekMap[week];
 
     res.render('index', {
         name: name,
         greeting: greeting,
-        time: time,
+        time: timeInfo,
         week: week
      });
 });
