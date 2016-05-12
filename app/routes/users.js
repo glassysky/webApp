@@ -5,7 +5,6 @@ var Emitter = events.EventEmitter;
 
 var signUpController = require('../controller/signup.controller.js');
 var signInController = require('../controller/signin.controller.js');
-var publishController = require('../controller/publish.controller.js');
 
 // 用户注册
 router.post('/add', function(req, res, next) {
@@ -56,27 +55,6 @@ router.post('/logout', function (req, res, next) {
             state: "success"
         });
     });
-});
-
-// 发表文章
-router.post('/publish', function (req, res, next) {
-    var news = req.body.body;
-    var data = {};
-
-    var pubEE = new Emitter();
-
-    data.body = news;
-    data.user = req.session.user;
-
-    pubEE.on("published", function (callback) {
-        res.json({
-            state: "success",
-            data: callback
-        });
-    });
-
-    publishController.addNews(data, pubEE);
-
 });
 
 module.exports = router;

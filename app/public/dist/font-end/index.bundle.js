@@ -431,6 +431,51 @@
 	    });
 	});
 
+	function render(result) {
+	    var $newsList = $("#news-list"),
+	        html = "",
+	        data = result.data;
+
+	    console.log(data);
+	    for (var i = 0; i < data.length; i++) {
+	        html += '<div class="news-item"> \
+	                    <div class="author"> \
+	                        <span>' + data[i].fullName + '</span> \
+	                        <span class="date">' + formatDate(data[i].date) + '</span> \
+	                    </div> \
+	                    <div class="content"> \
+	                        <p>' + data[i].body + '</p> \
+	                    </div> \
+	                </div>';
+	    }
+
+	    $newsList.html(html);
+	}
+
+	function getNewsList() {
+	    $.ajax({
+	        type: 'POST',
+	        url: '/news/show',
+	        success: function success(result) {
+	            render(result);
+	        },
+	        error: function error() {
+	            console.log('Ajax error!');
+	        }
+	    });
+	}
+
+	function formatDate(date) {
+	    var newDate = new Date(date),
+	        year = newDate.getFullYear(),
+	        month = newDate.getMonth() + 1,
+	        day = newDate.getDate();
+
+	    return year + '/' + month + '/' + day;
+	}
+
+	getNewsList();
+
 	module.exports = {};
 
 /***/ },
@@ -491,7 +536,7 @@
 	    var body = $("#mood").val();
 
 	    $.ajax({
-	        url: '/users/publish',
+	        url: '/news/publish',
 	        type: 'POST',
 	        data: {
 	            body: body

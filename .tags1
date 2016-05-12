@@ -4,8 +4,13 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-express	/Users/cuitianhao/Github/webApp/app/routes/index.js	/^var express = require('express');$/;"	variable	line:1
-ejs	/Users/cuitianhao/Github/webApp/app/routes/index.js	/^var ejs = require('ejs');$/;"	variable	line:2
-router	/Users/cuitianhao/Github/webApp/app/routes/index.js	/^var router = express.Router();$/;"	variable	line:3
-name	/Users/cuitianhao/Github/webApp/app/routes/index.js	/^var name = "";$/;"	variable	line:4
-weekMap	/Users/cuitianhao/Github/webApp/app/routes/index.js	/^var weekMap = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];$/;"	variable	line:6
+success	/Users/cuitianhao/Github/webApp/app/public/javascripts/index.js	/^        success: function (result) {$/;"	function	line:13
+error	/Users/cuitianhao/Github/webApp/app/public/javascripts/index.js	/^        error: function () {$/;"	function	line:20
+render	/Users/cuitianhao/Github/webApp/app/public/javascripts/index.js	/^function render (result) {$/;"	function	line:26
+render	/Users/cuitianhao/Github/webApp/app/public/javascripts/index.js	/^function render (result) {$/;"	function	line:26
+getNewsList	/Users/cuitianhao/Github/webApp/app/public/javascripts/index.js	/^function getNewsList () {$/;"	function	line:47
+success	/Users/cuitianhao/Github/webApp/app/public/javascripts/index.js	/^        success: function (result) {$/;"	function	line:51
+error	/Users/cuitianhao/Github/webApp/app/public/javascripts/index.js	/^        error: function () {$/;"	function	line:54
+getNewsList	/Users/cuitianhao/Github/webApp/app/public/javascripts/index.js	/^function getNewsList () {$/;"	function	line:47
+formatDate	/Users/cuitianhao/Github/webApp/app/public/javascripts/index.js	/^function formatDate (date) {$/;"	function	line:60
+formatDate	/Users/cuitianhao/Github/webApp/app/public/javascripts/index.js	/^function formatDate (date) {$/;"	function	line:60

@@ -22,5 +22,16 @@ module.exports = {
             if (err) console.dir(err);
             Emitter.emit("published", news);
         });
+    },
+
+    getNews: function (Emitter) {
+        newsModel
+            .find()
+            .limit(10)
+            .sort({ date: -1 })
+            .exec(function (err, news) {
+                if (err) console.dir(err);
+                Emitter.emit("finished", news);
+            });
     }
 }

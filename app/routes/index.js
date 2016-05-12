@@ -1,8 +1,8 @@
 var express = require('express');
 var ejs = require('ejs');
 var router = express.Router();
-var name = "";
 
+var name = "";
 var weekMap = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
 
 /* GET home page. */

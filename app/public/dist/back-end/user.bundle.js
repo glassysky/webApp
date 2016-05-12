@@ -188,7 +188,6 @@
 
 	var signUpController = __webpack_require__(6);
 	var signInController = __webpack_require__(2);
-	var publishController = __webpack_require__(11);
 
 	// 用户注册
 	router.post('/add', function (req, res, next) {
@@ -240,26 +239,6 @@
 	    });
 	});
 
-	// 发表文章
-	router.post('/publish', function (req, res, next) {
-	    var news = req.body.body;
-	    var data = {};
-
-	    var pubEE = new Emitter();
-
-	    data.body = news;
-	    data.user = req.session.user;
-
-	    pubEE.on("published", function (callback) {
-	        res.json({
-	            state: "success",
-	            data: callback
-	        });
-	    });
-
-	    publishController.addNews(data, pubEE);
-	});
-
 	module.exports = router;
 
 /***/ },
@@ -273,69 +252,6 @@
 /***/ function(module, exports) {
 
 	module.exports = require("events");
-
-/***/ },
-/* 11 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	// stuID => 学号
-	// pass => 密码
-
-	var userModel = __webpack_require__(3);
-	var newsModel = __webpack_require__(12);
-
-	module.exports = {
-	    // data.user
-	    // data.user._id
-	    // data.user.fullName
-	    // data.user.stuID
-	    // data.body
-	    addNews: function addNews(data, Emitter) {
-	        var newsInfo = {
-	            fullName: data.user.fullName,
-	            stuID: data.user.stuID,
-	            body: data.body
-	        };
-	        var news = new newsModel(newsInfo);
-
-	        news.save(function (err, news) {
-	            if (err) console.dir(err);
-	            Emitter.emit("published", news);
-	        });
-	    }
-	};
-
-/***/ },
-/* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var mongoose = __webpack_require__(4);
-
-	// sub-document
-	var commentsSchema = mongoose.Schema({
-	    fullName: String,
-	    body: String,
-	    date: Date
-	});
-
-	var newsSchema = mongoose.Schema({
-	    fullName: String,
-	    stuID: String,
-	    body: String,
-	    date: {
-	        type: Date,
-	        default: Date.now
-	    },
-	    comments: [commentsSchema]
-	});
-
-	var News = mongoose.model('News', newsSchema);
-
-	module.exports = News;
 
 /***/ }
 /******/ ]);

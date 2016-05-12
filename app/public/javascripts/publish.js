@@ -8,10 +8,10 @@ $("#publish-button").on("click", function(event) {
     var body = $("#mood").val();
 
     $.ajax({
-        url: '/users/publish',
+        url: '/news/publish',
         type: 'POST',
         data: {
-            body: body    
+            body: body
         },
         dataType: 'json',
         success: function (result) {
