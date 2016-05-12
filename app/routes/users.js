@@ -15,6 +15,7 @@ router.post('/add', function(req, res, next) {
     addEE.on("finished", function(callback){
         if(callback.state === "success") {
             req.session.user = {
+                _id: callback.data._id,
                 stuID: callback.data.stuID,
                 fullName: callback.data.fullName
             };
@@ -31,9 +32,11 @@ router.post('/log', function(req, res, next) {
         data;
 
     var logEE = new Emitter();
+
     logEE.on("finished", function(callback){
         if(callback.state === "success") {
             req.session.user = {
+                _id: callback.data._id,
                 stuID: callback.data.stuID,
                 fullName: callback.data.fullName
             };
@@ -57,7 +60,23 @@ router.post('/logout', function (req, res, next) {
 
 // 发表文章
 router.post('/publish', function (req, res, next) {
-    
+    var news = req.body.body;
+    var data = {};
+
+    var pubEE = new Emitter();
+
+    data.body = news;
+    data.user = req.session.user;
+
+    pubEE.on("published", function (callback) {
+        res.json({
+            state: "success",
+            data: callback
+        });
+    });
+
+    publishController.addNews(data, pubEE);
+
 });
 
 module.exports = router;

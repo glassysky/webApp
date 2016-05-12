@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
         month = date.getMonth() + 1,
         day = date.getDate(),
         week = date.getDay(),
-        greeting = "";
+        greeting = "",
         mydate = year + "/" + month + "/" + day;
 
     if (req.session.user) {

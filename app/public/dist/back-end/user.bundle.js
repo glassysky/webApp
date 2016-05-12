@@ -198,6 +198,7 @@
 	    addEE.on("finished", function (callback) {
 	        if (callback.state === "success") {
 	            req.session.user = {
+	                _id: callback.data._id,
 	                stuID: callback.data.stuID,
 	                fullName: callback.data.fullName
 	            };
@@ -214,9 +215,11 @@
 	        data;
 
 	    var logEE = new Emitter();
+
 	    logEE.on("finished", function (callback) {
 	        if (callback.state === "success") {
 	            req.session.user = {
+	                _id: callback.data._id,
 	                stuID: callback.data.stuID,
 	                fullName: callback.data.fullName
 	            };
@@ -238,7 +241,24 @@
 	});
 
 	// 发表文章
-	router.post('/publish', function (req, res, next) {});
+	router.post('/publish', function (req, res, next) {
+	    var news = req.body.body;
+	    var data = {};
+
+	    var pubEE = new Emitter();
+
+	    data.body = news;
+	    data.user = req.session.user;
+
+	    pubEE.on("published", function (callback) {
+	        res.json({
+	            state: "success",
+	            data: callback
+	        });
+	    });
+
+	    publishController.addNews(data, pubEE);
+	});
 
 	module.exports = router;
 
@@ -266,7 +286,26 @@
 	var userModel = __webpack_require__(3);
 	var newsModel = __webpack_require__(12);
 
-	module.exports = {};
+	module.exports = {
+	    // data.user
+	    // data.user._id
+	    // data.user.fullName
+	    // data.user.stuID
+	    // data.body
+	    addNews: function addNews(data, Emitter) {
+	        var newsInfo = {
+	            fullName: data.user.fullName,
+	            stuID: data.user.stuID,
+	            body: data.body
+	        };
+	        var news = new newsModel(newsInfo);
+
+	        news.save(function (err, news) {
+	            if (err) console.dir(err);
+	            Emitter.emit("published", news);
+	        });
+	    }
+	};
 
 /***/ },
 /* 12 */
@@ -276,11 +315,22 @@
 
 	var mongoose = __webpack_require__(4);
 
+	// sub-document
+	var commentsSchema = mongoose.Schema({
+	    fullName: String,
+	    body: String,
+	    date: Date
+	});
+
 	var newsSchema = mongoose.Schema({
 	    fullName: String,
 	    stuID: String,
-	    dataTime: String,
-	    comments: Object
+	    body: String,
+	    date: {
+	        type: Date,
+	        default: Date.now
+	    },
+	    comments: [commentsSchema]
 	});
 
 	var News = mongoose.model('News', newsSchema);

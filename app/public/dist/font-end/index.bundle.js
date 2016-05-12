@@ -485,7 +485,33 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	$("#publish-button").on("click", function (event) {});
+	function render(data) {}
+
+	$("#publish-button").on("click", function (event) {
+	    var body = $("#mood").val();
+
+	    $.ajax({
+	        url: '/users/publish',
+	        type: 'POST',
+	        data: {
+	            body: body
+	        },
+	        dataType: 'json',
+	        success: function success(result) {
+	            if (result.state === "success") {
+	                // page update
+	                // pass id/name/content by result
+	                render(result);
+	                console.log(result.data);
+	            } else {
+	                console.log("failed");
+	            }
+	        },
+	        error: function error() {
+	            console.log('Ajax error!');
+	        }
+	    });
+	});
 
 	module.exports = {};
 
