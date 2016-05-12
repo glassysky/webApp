@@ -1,5 +1,29 @@
 @import './common.scss';
 
 #publish-button {
-    background-color: #abc;
+    background-color: #0088cc;
+    text-shadow: none;
+}
+
+#news-list {
+    .news-item {
+        padding: 10px 1px;
+        border-bottom: 1px solid #ddd;
+        .author {
+            // background-color: #4986e7;
+            padding: 3px 5px;
+            .date {
+                float: right;
+                font-size: 0.9em;
+                color: #aaa
+            }
+        }
+        .content {
+            padding: 0 5px;
+            p {
+                word-wrap: break-word;
+                word-break: normal;
+            }
+        }
+    }
 }

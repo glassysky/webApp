@@ -440,7 +440,7 @@
 	    for (var i = 0; i < data.length; i++) {
 	        html += '<div class="news-item"> \
 	                    <div class="author"> \
-	                        <span>' + data[i].fullName + '</span> \
+	                        <span class="name">' + data[i].fullName + '</span> \
 	                        <span class="date">' + formatDate(data[i].date) + '</span> \
 	                    </div> \
 	                    <div class="content"> \
@@ -513,7 +513,7 @@
 
 
 	// module
-	exports.push([module.id, ".ui-page .ui-content {\n  padding: 20px 30px; }\n  .ui-page .ui-content form .ui-field-contain .ui-input-text {\n    margin-bottom: 5px; }\n\n.ui-page .ui-footer h1 {\n  font-size: 0.8em; }\n\n#publish-button {\n  background-color: #abc; }\n", ""]);
+	exports.push([module.id, ".ui-page .ui-content {\n  padding: 20px 30px; }\n  .ui-page .ui-content form .ui-field-contain .ui-input-text {\n    margin-bottom: 5px; }\n\n.ui-page .ui-footer h1 {\n  font-size: 0.8em; }\n\n#publish-button {\n  background-color: #0088cc;\n  text-shadow: none; }\n\n#news-list .news-item {\n  padding: 10px 1px;\n  border-bottom: 1px solid #ddd; }\n  #news-list .news-item .author {\n    padding: 3px 5px; }\n    #news-list .news-item .author .date {\n      float: right;\n      font-size: 0.9em;\n      color: #aaa; }\n  #news-list .news-item .content {\n    padding: 0 5px; }\n    #news-list .news-item .content p {\n      word-wrap: break-word;\n      word-break: normal; }\n", ""]);
 
 	// exports
 

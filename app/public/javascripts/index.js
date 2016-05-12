@@ -32,7 +32,7 @@ function render (result) {
     for (var i = 0; i < data.length; i++) {
         html += '<div class="news-item"> \
                     <div class="author"> \
-                        <span>' + data[i].fullName + '</span> \
+                        <span class="name">' + data[i].fullName + '</span> \
                         <span class="date">' + formatDate(data[i].date) + '</span> \
                     </div> \
                     <div class="content"> \
