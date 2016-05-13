@@ -1,7 +1,7 @@
 import Common from './common.js';
 
 function render (data) {
-
+    location.reload();
 }
 
 $("#publish-button").on("click", function(event) {

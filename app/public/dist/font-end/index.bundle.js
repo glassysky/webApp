@@ -53,15 +53,52 @@
 
 	'use strict';
 
-	__webpack_require__(14);
-	__webpack_require__(13);
-	__webpack_require__(16);
+	__webpack_require__(2);
+	__webpack_require__(6);
+	__webpack_require__(8);
 
 /***/ },
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(3);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./index.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./index.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".ui-page .ui-content {\n  padding: 20px 30px; }\n  .ui-page .ui-content form .ui-field-contain .ui-input-text {\n    margin-bottom: 5px; }\n\n.ui-page .ui-footer h1 {\n  font-size: 0.8em; }\n\n#publish-button {\n  background-color: #0088cc;\n  text-shadow: none; }\n\n#news-list .news-item {\n  padding: 10px 1px;\n  border-bottom: 1px solid #ddd; }\n  #news-list .news-item .author {\n    padding: 3px 5px; }\n    #news-list .news-item .author .name {\n      color: #003366; }\n    #news-list .news-item .author .date {\n      float: right;\n      font-size: 0.9em;\n      color: #aaa; }\n  #news-list .news-item .content {\n    padding: 0 5px; }\n    #news-list .news-item .content p {\n      word-wrap: break-word;\n      word-break: normal; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 4 */
 /***/ function(module, exports) {
 
 	/*
@@ -117,7 +154,7 @@
 
 
 /***/ },
-/* 6 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -369,40 +406,12 @@
 
 
 /***/ },
-/* 7 */,
-/* 8 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	module.exports = {
-	    formInfoMapping: {
-	        fullName: {
-	            isRequired: true
-	        },
-	        passWord: {
-	            isRequired: true
-	        },
-	        stuID: {
-	            isRequired: true
-	        }
-	    },
-	    transformIntoCamelCase: function transformIntoCamelCase(string) {
-	        return $.camelCase(string);
-	    }
-	};
-
-/***/ },
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _common = __webpack_require__(8);
+	var _common = __webpack_require__(7);
 
 	var _common2 = _interopRequireDefault(_common);
 
@@ -479,58 +488,43 @@
 	module.exports = {};
 
 /***/ },
-/* 14 */
-/***/ function(module, exports, __webpack_require__) {
+/* 7 */
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
+	"use strict";
 
-	// load the styles
-	var content = __webpack_require__(15);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(6)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./index.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./index.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	module.exports = {
+	    formInfoMapping: {
+	        fullName: {
+	            isRequired: true
+	        },
+	        passWord: {
+	            isRequired: true
+	        },
+	        stuID: {
+	            isRequired: true
+	        }
+	    },
+	    transformIntoCamelCase: function transformIntoCamelCase(string) {
+	        return $.camelCase(string);
+	    }
+	};
 
 /***/ },
-/* 15 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(5)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".ui-page .ui-content {\n  padding: 20px 30px; }\n  .ui-page .ui-content form .ui-field-contain .ui-input-text {\n    margin-bottom: 5px; }\n\n.ui-page .ui-footer h1 {\n  font-size: 0.8em; }\n\n#publish-button {\n  background-color: #0088cc;\n  text-shadow: none; }\n\n#news-list .news-item {\n  padding: 10px 1px;\n  border-bottom: 1px solid #ddd; }\n  #news-list .news-item .author {\n    padding: 3px 5px; }\n    #news-list .news-item .author .date {\n      float: right;\n      font-size: 0.9em;\n      color: #aaa; }\n  #news-list .news-item .content {\n    padding: 0 5px; }\n    #news-list .news-item .content p {\n      word-wrap: break-word;\n      word-break: normal; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 16 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _common = __webpack_require__(8);
+	var _common = __webpack_require__(7);
 
 	var _common2 = _interopRequireDefault(_common);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function render(data) {}
+	function render(data) {
+	    location.reload();
+	}
 
 	$("#publish-button").on("click", function (event) {
 	    var body = $("#mood").val();

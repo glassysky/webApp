@@ -58,6 +58,7 @@ formatDate	/Users/cuitianhao/Github/webApp/app/public/javascripts/index.js	/^fun
 #news-list	/Users/cuitianhao/Github/webApp/app/public/stylesheets/index.scss	/^#news-list {$/;"	function	line:8
 .news-item	/Users/cuitianhao/Github/webApp/app/public/stylesheets/index.scss	/^    .news-item {$/;"	function	line:9
 .author	/Users/cuitianhao/Github/webApp/app/public/stylesheets/index.scss	/^        .author {$/;"	function	line:12
-.date	/Users/cuitianhao/Github/webApp/app/public/stylesheets/index.scss	/^            .date {$/;"	function	line:15
-.content	/Users/cuitianhao/Github/webApp/app/public/stylesheets/index.scss	/^        .content {$/;"	function	line:21
-p	/Users/cuitianhao/Github/webApp/app/public/stylesheets/index.scss	/^            p {$/;"	function	line:23
+.name	/Users/cuitianhao/Github/webApp/app/public/stylesheets/index.scss	/^            .name {$/;"	function	line:15
+.date	/Users/cuitianhao/Github/webApp/app/public/stylesheets/index.scss	/^            .date {$/;"	function	line:18
+.content	/Users/cuitianhao/Github/webApp/app/public/stylesheets/index.scss	/^        .content {$/;"	function	line:24
+p	/Users/cuitianhao/Github/webApp/app/public/stylesheets/index.scss	/^            p {$/;"	function	line:26

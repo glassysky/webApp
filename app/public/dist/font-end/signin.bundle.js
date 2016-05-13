@@ -44,61 +44,14 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(2);
+	module.exports = __webpack_require__(9);
 
 
 /***/ },
 /* 1 */,
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	__webpack_require__(3);
-	__webpack_require__(7);
-
-/***/ },
-/* 3 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(4);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(6)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./signin.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./signin.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
+/* 2 */,
+/* 3 */,
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(5)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".ui-page .ui-content {\n  padding: 20px 30px; }\n  .ui-page .ui-content form .ui-field-contain .ui-input-text {\n    margin-bottom: 5px; }\n\n.ui-page .ui-footer h1 {\n  font-size: 0.8em; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 5 */
 /***/ function(module, exports) {
 
 	/*
@@ -154,7 +107,7 @@
 
 
 /***/ },
-/* 6 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -406,12 +359,86 @@
 
 
 /***/ },
+/* 6 */,
 /* 7 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports = {
+	    formInfoMapping: {
+	        fullName: {
+	            isRequired: true
+	        },
+	        passWord: {
+	            isRequired: true
+	        },
+	        stuID: {
+	            isRequired: true
+	        }
+	    },
+	    transformIntoCamelCase: function transformIntoCamelCase(string) {
+	        return $.camelCase(string);
+	    }
+	};
+
+/***/ },
+/* 8 */,
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(10);
+	__webpack_require__(12);
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(11);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./signin.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./signin.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".ui-page .ui-content {\n  padding: 20px 30px; }\n  .ui-page .ui-content form .ui-field-contain .ui-input-text {\n    margin-bottom: 5px; }\n\n.ui-page .ui-footer h1 {\n  font-size: 0.8em; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _common = __webpack_require__(8);
+	var _common = __webpack_require__(7);
 
 	var _common2 = _interopRequireDefault(_common);
 
@@ -464,29 +491,6 @@
 	});
 
 	module.exports = {};
-
-/***/ },
-/* 8 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	module.exports = {
-	    formInfoMapping: {
-	        fullName: {
-	            isRequired: true
-	        },
-	        passWord: {
-	            isRequired: true
-	        },
-	        stuID: {
-	            isRequired: true
-	        }
-	    },
-	    transformIntoCamelCase: function transformIntoCamelCase(string) {
-	        return $.camelCase(string);
-	    }
-	};
 
 /***/ }
 /******/ ]);

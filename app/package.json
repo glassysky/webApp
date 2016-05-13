@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "nodemon ./bin/www",
     "back-dev": "webpack --watch --display-error-details --config webpack.node.config.js",
     "font-dev": "webpack --watch --display-error-details --config webpack.config.js"
   },
